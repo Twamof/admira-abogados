@@ -8,6 +8,9 @@ import {
 } from "lucide-react";
 import { createAppointment, SERVICE_TYPES, TIME_SLOTS, getArticles } from "@/lib/data";
 
+// Base path for images — matches next.config.ts basePath for GitHub Pages
+const BASE_PATH = process.env.NODE_ENV === "production" ? "/admira-abogados" : "";
+
 // ── helpers ──────────────────────────────────────────────────────────────────
 const M_ES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const M_AR = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
@@ -199,7 +202,7 @@ export default function HomePage() {
       {/* ── HERO ─────────────────────────────────────────────────────────────── */}
       <section id="inicio" style={{minHeight:"100vh",paddingTop:68,background:"#0E0E10",position:"relative",overflow:"hidden",display:"flex",flexDirection:"column"}}>
         {/* Background image with overlay */}
-        <div style={{position:"absolute",inset:0,backgroundImage:"url('/hero-bg.png')",backgroundSize:"cover",backgroundPosition:"center",opacity:0.2}}/>
+        <div style={{position:"absolute",inset:0,backgroundImage:`url('${BASE_PATH}/hero-bg.png')`,backgroundSize:"cover",backgroundPosition:"center",opacity:0.2}}/>
         {/* Gradient overlays */}
         <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(14,14,16,0.96) 0%,rgba(14,14,16,0.6) 50%,rgba(139,0,0,0.15) 100%)"}}/>
         <div style={{position:"absolute",bottom:0,left:0,right:0,height:200,background:"linear-gradient(to top,#0E0E10,transparent)"}}/>
@@ -402,7 +405,7 @@ export default function HomePage() {
 
       {/* ── LAWYER BANNER ───────────────────────────────────────────────────── */}
       <section style={{background:"linear-gradient(135deg,#0E0E10 0%,#1C1C1E 60%,rgba(139,0,0,0.15) 100%)",padding:"80px 32px",position:"relative",overflow:"hidden"}}>
-        <div style={{position:"absolute",right:0,top:0,bottom:0,width:"40%",backgroundImage:"url('/aziza.png')",backgroundSize:"cover",backgroundPosition:"center top",opacity:0.35}}/>
+        <div style={{position:"absolute",right:0,top:0,bottom:0,width:"40%",backgroundImage:`url('${BASE_PATH}/aziza.png')`,backgroundSize:"cover",backgroundPosition:"center top",opacity:0.35}}/>
         <div style={{position:"absolute",right:0,top:0,bottom:0,width:"50%",background:"linear-gradient(to right,#1C1C1E,transparent)"}}/>
         <div style={{maxWidth:1280,margin:"0 auto",position:"relative",zIndex:1}}>
           <div style={{maxWidth:580}}>
@@ -447,7 +450,7 @@ export default function HomePage() {
               <div key={art.id} className="art-card">
                 <div style={{height:210,position:"relative",overflow:"hidden",background:"#1C1C1E"}}>
                   {art.imageUrl
-                    ? <img src={art.imageUrl} alt={art.title} style={{width:"100%",height:"100%",objectFit:"cover",display:"block",transition:"transform 0.4s"}}
+                    ? <img src={`${BASE_PATH}${art.imageUrl}`} alt={art.title} style={{width:"100%",height:"100%",objectFit:"cover",display:"block",transition:"transform 0.4s"}}
                         onMouseEnter={e=>(e.currentTarget.style.transform="scale(1.05)")}
                         onMouseLeave={e=>(e.currentTarget.style.transform="scale(1)")}/>
                     : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:54}}>{ARTICLE_ICONS[art.category]??"⚖️"}</div>
